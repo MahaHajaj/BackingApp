@@ -29,10 +29,6 @@ public class BakingAppWidget extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-
-        // Construct the RemoteViews object
-
-
         Intent intent = new Intent(context, MainActivity.class);
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.baking_widget);
 
@@ -44,13 +40,11 @@ public class BakingAppWidget extends AppWidgetProvider {
         views.setOnClickPendingIntent(R.id.appwidget_title,pendingIntent);
        views.setOnClickPendingIntent(R.id.appwidget_text,pendingIntent);
 
-        // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        // There may be multiple widgets active, so update all of them
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId);
         }
@@ -65,26 +59,5 @@ public class BakingAppWidget extends AppWidgetProvider {
     public void onDisabled(Context context) {
         // Enter relevant functionality for when the last widget is disabled
     }
-//    @Override
-//    public void onReceive(Context context, Intent intent) {
-//
-//        if (intent.hasExtra("recipe")) {
-//            Recipe recipe = (Recipe) intent.getSerializableExtra("recipe");
-//            text = recipe.getName();
-//            ingredients = recipe.getIngredients();
-//        } else {
-//            text = context.getString((R.string.no_recipe_selected));
-//        }
-//
-//        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context.getApplicationContext());
-//        ComponentName thisWidget = new ComponentName(context.getApplicationContext(), BakingAppWidget.class);
-//        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
-//        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.appWidget);
-//        if (appWidgetIds != null && appWidgetIds.length > 0) {
-//            onUpdate(context, appWidgetManager, appWidgetIds);
-//        }
-//
-//        super.onReceive(context, intent);
-//    }
 }
 
